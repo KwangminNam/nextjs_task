@@ -3,6 +3,7 @@
 import { getData } from "@/app/utils/getData";
 import { useQuery } from "@tanstack/react-query";
 import { DetailParamsI } from "./page";
+import Link from "next/link";
 
 export default function PostDetail({ params }: { params: DetailParamsI }) {
   const { data, isLoading, isError } = useQuery({
@@ -28,6 +29,7 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
       {!comment ? <div>댓글이 없습니다.</div> : comment.map((item)=>(
         <div>{item.content}</div>
       ))}
+      <Link href={`/edit/${id}`}>수정하기</Link>
     </>
   );
 }

@@ -13,15 +13,21 @@ export default function WriteClient() {
 
   const router = useRouter();
 
-  const addPost = (data:any) =>{
+  //TODO: API feature 들 따로 관리하기
+  const addPost = async (data:any) =>{
     return axios.post('http://localhost:3001/posts',data).then(()=>{
       toast.success('등록 완료!');
-      router.push('/');
     })
   }
 
   const createPost = useMutation({
-    mutationFn:addPost
+    mutationFn:addPost,
+    onSuccess: ()=>{
+      router.push('/')
+    },
+    onError: ()=>{
+      toast.error('잠시후 다시 시도해주세요.')
+    }
   })
 
   const createPostHandleSubmit = async (formData: FieldValues) => {
