@@ -8,21 +8,18 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Form from "../components/Form";
+import { apiModules } from "../utils/getData";
 
 export default function WriteClient() {
-
+  
+  const {postData} = apiModules();
   const router = useRouter();
 
-  //TODO: API feature 들 따로 관리하기
-  const addPost = async (data:any) =>{
-    return axios.post('http://localhost:3001/posts',data).then(()=>{
-      toast.success('등록 완료!');
-    })
-  }
-
   const createPost = useMutation({
-    mutationFn:addPost,
+    mutationFn:postData,
     onSuccess: ()=>{
+      toast.success('등록 완료')
       router.push('/')
     },
     onError: ()=>{
@@ -42,10 +39,10 @@ export default function WriteClient() {
 
 
   return (
-    <form onSubmit={handleSubmit(createPostHandleSubmit)}>
+    <Form onSubmit={handleSubmit(createPostHandleSubmit)}>
       <Input id="title" register={register} />
-      <Input id="content" register={register} />
+      <Input id="content" register={register}  type="textarea"/>
       <Button label="등록하기" />
-    </form>
+    </Form>
   );
 }
