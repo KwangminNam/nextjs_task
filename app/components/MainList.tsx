@@ -63,8 +63,11 @@ export default function MainList() {
   });
 
   const removeHandler = (id: number) => {
+    const confirmRemove = confirm('삭제 하시겠습니까?');
     try {
-      removeQuery.mutate(id);
+      if(confirmRemove){
+        removeQuery.mutate(id);
+      }
     } catch (error) {
       console.log(error);
     }

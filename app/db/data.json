@@ -1,46 +1,21 @@
 {
   "posts": [
     {
-      "title": "1111dddsdfasdfas",
-      "content": "dddasfasfas11111",
-      "id": 1
-    },
-    {
-      "title": "dd",
-      "content": "dd",
-      "id": 2
-    },
-    {
-      "title": "dd",
-      "content": "dd",
+      "title": "22",
+      "content": "22",
       "id": 3
     }
   ],
   "comments": [
     {
-      "content": "ddddddddddzzz",
-      "postId": 1,
-      "id": 9
-    },
-    {
-      "content": "dddddddddd",
-      "postId": 1,
-      "id": 10
-    },
-    {
-      "content": "dddddd",
-      "postId": 1,
-      "id": 11
-    },
-    {
-      "content": "ㅇㅇㅇㅇddd",
       "postId": 3,
-      "id": 12
+      "content": "dd",
+      "id": 1
     },
     {
-      "content": "hhjj",
-      "postId": 1,
-      "id": 13
+      "postId": 3,
+      "content": "dd",
+      "id": 2
     }
   ]
 }

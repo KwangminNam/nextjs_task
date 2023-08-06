@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import Button from "@/app/components/Button";
 import { useState } from "react";
 import EditComment from "@/app/components/EditComment";
+import { BsFillTrashFill } from "react-icons/bs";
 
 const EditLink = styled(Link)`
   color: #f04d4e;
@@ -47,6 +48,28 @@ const CommentWrapper = styled.div`
   border-bottom: 1px solid #ccc;
   justify-content: space-between;
   align-items: center;
+`;
+
+const CommentBtnWrapper = styled.div`
+  display: flex;
+  padding-right: 15px;
+  gap: 13px ;
+`;
+
+const RemoveCommentButton = styled.button`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  border: none;
+  align-items: center;
+`;
+
+const EditCommentButton = styled.button`
+  background-color: green;
 `;
 
 export default function PostDetail({ params }: { params: DetailParamsI }) {
@@ -149,8 +172,12 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
             {index !== item.id && (
               <>
                 {item.content}
-                <button onClick={() => setIndex(item.id)}>수정</button>
-                <button onClick={() => removeHandler(item.id)}>삭제 </button>
+                <CommentBtnWrapper>
+                  <button onClick={() => setIndex(item.id)}>수정</button>
+                  <RemoveCommentButton onClick={() => removeHandler(item.id)}>
+                    <BsFillTrashFill size={20} color="#fff" />
+                  </RemoveCommentButton>
+                </CommentBtnWrapper>
               </>
             )}
             {index === item.id && (
