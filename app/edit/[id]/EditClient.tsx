@@ -4,7 +4,6 @@ import Button from "@/app/components/Button";
 import Form from "@/app/components/Form";
 import Input from "@/app/components/Input";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -43,10 +42,10 @@ export default function EditClient({ params }: any) {
       }
     }
   );
-  const createPostHandleSubmit = async (formData: FieldValues) => {
+  const createPostHandleSubmit = (formData: FieldValues) => {
     try {
       // 여기서 formData를 사용하여 적절한 형태로 변환한 후 mutate 함수에 전달합니다.
-      await editPost.mutateAsync(formData);
+      editPost.mutate(formData);
     } catch (error) {
       console.error("Error creating post:", error);
     }

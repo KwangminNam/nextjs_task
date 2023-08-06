@@ -10,7 +10,16 @@ interface ButtonPropsI {
 const ButtonComponent = styled.button`
   width: 100px;
   padding: 10px;
-  background-color: blue;
+  background-color: #4d8eff;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius:10px;
+  font-size: 15px;
+  cursor: pointer;
+  &:hover{
+    
+  }
 `;
 
 export default function Button({ label }: ButtonPropsI) {

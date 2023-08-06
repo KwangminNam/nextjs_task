@@ -7,21 +7,45 @@ import { toast } from "react-hot-toast";
 import { styled } from "styled-components";
 import { PostType, apiModules } from "../utils/getData";
 import { useRouter } from "next/navigation";
-// import { deletePost, getData } from "../utils/getData";
+import { BsFillTrashFill } from "react-icons/bs";
 
-const List = styled.li`
+const PostList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const PostListItem = styled.li`
   border-radius: 20px;
   border: 1px solid #555;
   display: flex;
+  align-items: center;
   width: 500px;
+  padding-right:20px;
   margin-bottom: 19px;
 `;
 
+const RemoveButton = styled.button`
+  background-color: #f04d4e;;
+  outline: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:hover{
+    border: 1px solid black;
+  }
+`
+
 export default function MainList() {
-  const {getData,deleteData} = apiModules();
+  const { getData, deleteData } = apiModules();
   const router = useRouter();
   const { data, isLoading, isError } = useQuery<PostType[]>({
-    queryKey: ['posts'],
+    queryKey: ["posts"],
     queryFn: getData
   });
 
@@ -38,18 +62,18 @@ export default function MainList() {
     }
   });
 
-  const removeHandler = async (id: number) => {
+  const removeHandler = (id: number) => {
     try {
-      await removeQuery.mutateAsync(id);
+      removeQuery.mutate(id);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <main>
-      <ul>
+      <PostList>
         {data?.map((item) => (
-          <List>
+          <PostListItem key={item.id}>
             <Link
               href={`/post/${item.id}`}
               style={{
@@ -64,16 +88,16 @@ export default function MainList() {
                 {item.title}
               </span>
             </Link>
-            <button
+            <RemoveButton
               onClick={() => {
                 removeHandler(item.id);
               }}
             >
-              DELETE
-            </button>
-          </List>
+              <BsFillTrashFill size={30} color='#fff' />
+            </RemoveButton>
+          </PostListItem>
         ))}
-      </ul>
+      </PostList>
     </main>
   );
 }
