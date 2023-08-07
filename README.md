@@ -1,4 +1,26 @@
-Issue
+## Prject 
+* Next.js 13 (Latest version)
+* Typescript
+* Json-server
+* React Query
+* Styled-compoennts
+* react-hook-form
+* react-toast
+* axios
+* jest
 
-Style-component 스타일을 Next.js13 버전에 적용할때 서버사이드 렌더링이다 보니 , 스타일 컴포넌트가 적용되기전의 html이 먼저 렌더링이 되고나서 스타일 컴포넌트의 스타일이 적용이되는 이슈.
-Reference:https://www.youtube.com/watch?v=3tgrPm2aKog
+## Issue
+* Next.js13 에서 React-query 로 SSR 및 hydrate 구현 관련 블로그
+
+* Next.js13 에서 Styled-components를 적용할때 생기는 이슈 해결 관련 블로그
+
+
+## Todo
+
+* 게시글 CRUD 구현 = Done
+* 댓글 CRUD 구현 = Done
+* 공통 컴포넌트화 = Ing
+* 공통 컴포넌트 스타일링 = Ing
+* useMemo , useCallback , memo 등 컴포넌트 최적화 렌더링 = Ing
+* Jest testing 비동기 코드 위주의 테스트코드 예정 = Ing
+* Error 핸들링
