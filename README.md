@@ -23,6 +23,12 @@ npm install
 npm run dev
 ```
 
+### Json server
+
+```sh
+json-server --watch ./app/db/data.json --port 3001  
+```
+
 
 ## Issue
 * Next.js13 에서 React-query 로 SSR 및 hydrate 구현 관련 블로그
@@ -38,4 +44,4 @@ npm run dev
 * 공통 컴포넌트 스타일링 = Ing
 * useMemo , useCallback , memo 등 컴포넌트 최적화 렌더링 = Ing
 * Jest testing 비동기 코드 위주의 테스트코드 예정 = Ing
-* Error 핸들링
+* Error 핸들링 = Ing
