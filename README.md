@@ -9,6 +9,21 @@
 * axios
 * jest
 
+## Requirements
+```sh
+node >= 16
+```
+
+## Command line
+```sh
+npm install
+```
+
+```sh
+npm run dev
+```
+
+
 ## Issue
 * Next.js13 에서 React-query 로 SSR 및 hydrate 구현 관련 블로그
 
