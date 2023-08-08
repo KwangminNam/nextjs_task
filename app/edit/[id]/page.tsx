@@ -1,7 +1,7 @@
 import { DetailParamsI } from '@/app/post/[id]/page'
 import EditClient from './EditClient'
 import getQueryClient from '@/app/getQueryClient';
-import { apiModules } from '@/app/utils/getData';
+import { apiModules } from '@/app/utils/api';
 import { Hydrate, dehydrate } from '@tanstack/react-query';
 
 export default async function page({params}:{params :DetailParamsI}) {

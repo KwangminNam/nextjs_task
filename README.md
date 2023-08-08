@@ -38,6 +38,11 @@ json-server --watch ./app/db/data.json --port 3001
 * react-hook-form을 사용하여 input focus를 주려고 했지만 , useRef 사용시 "'ref' is specified more than once, so this usage will be overwritten." 에러
  생각해보니.. 당연하게도 react-hook-form에서 register로 이미 input의 ref에 접근 하고있어서 중복 에러. react-hook-form 에서 제공하는 setFocus 이용해서 focus event 해결완료!
 
+* jest로 fetching 해오는 데이터를 MSW mock데이터로 이용하려했으나 Next.js13에서 지원이 안되는거같다.. 
+https://mswjs.io/
+https://github.com/mswjs/msw/discussions/1498
+-- youtuber 발견:https://www.youtube.com/watch?v=Q-Sg4p_iQvw&t=469s
+
 
 ## Todo
 

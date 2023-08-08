@@ -17,9 +17,6 @@ const ButtonComponent = styled.button`
   border-radius:10px;
   font-size: 15px;
   cursor: pointer;
-  &:hover{
-    
-  }
 `;
 
 export default function Button({ label }: ButtonPropsI) {

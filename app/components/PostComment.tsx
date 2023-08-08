@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
 
 interface PostCommentProps {
   register: UseFormRegister<FieldValues>;
-  handleSubmit: any;
+  handleSubmit: () => void;
 }
 
 const CommentWrap = styled.div`

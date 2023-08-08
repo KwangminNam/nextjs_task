@@ -18,6 +18,7 @@ const FormContainer = styled.form`
 `;
 
 export default function Form({onSubmit,children}:FormPropsI) {
+  console.log('FORM COMPONENT RENDERING')
   return (
     <FormContainer onSubmit={onSubmit}>
       {children}

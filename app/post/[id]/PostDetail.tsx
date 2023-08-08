@@ -3,7 +3,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { DetailParamsI } from "./page";
 import Link from "next/link";
-import { apiModules } from "@/app/utils/getData";
+import { apiModules } from "@/app/utils/api";
 import { styled } from "styled-components";
 import Input from "@/app/components/Input";
 import Form from "@/app/components/Form";

@@ -7,10 +7,11 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import { apiModules } from "@/app/utils/getData";
+import { apiModules } from "@/app/utils/api";
 import { useEffect, useRef } from "react";
+import { DetailParamsI } from "@/app/post/[id]/page";
 
-export default function EditClient({ params }: any) {
+export default function EditClient({ params }: {params :DetailParamsI}) {
   const { getData, editData: editFn } = apiModules();
   const router = useRouter();
   const { data, isLoading, isError } = useQuery({
@@ -19,6 +20,7 @@ export default function EditClient({ params }: any) {
   });
 
   const editData = data?.find((item) => item.id === +params.id);
+
   const { register, handleSubmit , setFocus} = useForm<FieldValues>({
     defaultValues: {
       title: editData?.title,

@@ -4,6 +4,11 @@
       "title": "sadfhh111",
       "content": "1111hhsadf",
       "id": 1
+    },
+    {
+      "title": "ㅇㅇㅇ",
+      "content": "ㅇㅇ",
+      "id": 2
     }
   ],
   "comments": [
@@ -11,6 +16,11 @@
       "content": "!!!hello111",
       "postId": 1,
       "id": 1
+    },
+    {
+      "postId": 1,
+      "content": "1111",
+      "id": 2
     }
   ]
 }

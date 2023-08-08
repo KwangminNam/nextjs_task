@@ -1,7 +1,7 @@
 import getQueryClient from "@/app/getQueryClient";
 import { Hydrate, dehydrate } from "@tanstack/react-query";
 import PostDetail from "./PostDetail";
-import { apiModules } from "@/app/utils/getData";
+import { apiModules } from "@/app/utils/api";
 
 //TODO: 공통 타입으로 따로 관리하기.
 export interface DetailParamsI {

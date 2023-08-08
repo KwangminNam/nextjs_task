@@ -4,7 +4,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import Button from "./Button";
 import Form from "./Form";
 import Input from "./Input";
-import { apiModules } from "../utils/getData";
+import { apiModules } from "../utils/api";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
@@ -14,7 +14,7 @@ interface EditComment {
   contentValue: string;
   postIdValue: number;
   postId: number;
-  setEditComment:any;
+  setEditComment:React.Dispatch<React.SetStateAction<number | null>>
 }
 
 export default function EditComment({
@@ -33,7 +33,7 @@ export default function EditComment({
   });
 
   useEffect(()=>{
-    setFocus('content')
+    setFocus('content');
   },[])
 
   const editCommentQuery = useMutation(

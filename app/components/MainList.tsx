@@ -5,7 +5,7 @@ import React from "react";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { styled } from "styled-components";
-import { PostType, apiModules } from "../utils/getData";
+import { PostType, apiModules } from "../utils/api";
 import { useRouter } from "next/navigation";
 import { BsFillTrashFill } from "react-icons/bs";
 
