@@ -1,4 +1,4 @@
-## Prject 
+## Project
 * Next.js 13 (Latest version)
 * Typescript
 * Json-server
