@@ -8,21 +8,21 @@ import { apiModules } from "../utils/api";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 
-interface EditComment {
+interface EditCommentProps {
   contentValue: string;
   postIdValue: number;
   postId: number;
   setEditComment:React.Dispatch<React.SetStateAction<number | null>>
 }
 
-export default function EditComment({
+function EditComment({
   contentValue,
   postIdValue,
   postId,
   setEditComment
-}: EditComment) {
+}: EditCommentProps) {
   const router = useRouter();
   const { editCommentData } = apiModules();
   const { handleSubmit, register , setFocus} = useForm<FieldValues>({
@@ -31,6 +31,8 @@ export default function EditComment({
       postId: postIdValue
     }
   });
+
+  console.log('EDITCOMMENT RENDERED')
 
   useEffect(()=>{
     setFocus('content');
@@ -72,3 +74,5 @@ export default function EditComment({
     </Form>
   );
 }
+
+export default memo(EditComment);

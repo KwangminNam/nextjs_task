@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 import Form from './Form'
 import Input from './Input'
 import Button from './Button'
@@ -15,11 +15,11 @@ const CommentWrap = styled.div`
   display: flex;
 `;
 
-export default function PostComment({
+function PostComment({
   register,
   handleSubmit
 }: PostCommentProps) {
-
+  console.log("POST COMMENT RENDERED");
   return (
     <Form onSubmit={handleSubmit}>
       <CommentWrap>
@@ -30,3 +30,4 @@ export default function PostComment({
     </Form>
   )
 }
+export default memo(PostComment);

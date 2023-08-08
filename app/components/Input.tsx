@@ -5,12 +5,13 @@ import { styled } from "styled-components";
 interface InputPropsI {
   id: string;
   type?: "text" | "textarea" | "password" | "number" | "hidden";
-  placeholder?:string;
+  placeholder?: string;
   register: UseFormRegister<FieldValues>;
 }
 
 const InputComponent = styled.input`
-  padding: ${(props) => (props.type === "textarea" ? "20px 0 100px 20px" : "20px")};
+  padding: ${(props) =>
+    props.type === "textarea" ? "20px 0 100px 20px" : "20px"};
   width: 100%;
   overflow-y: scroll;
 `;
@@ -21,5 +22,12 @@ export default function Input({
   placeholder,
   register
 }: InputPropsI) {
-  return <InputComponent id={id} type={type} {...register(id)} placeholder={placeholder} />;
+  return (
+    <InputComponent
+      id={id}
+      type={type}
+      {...register(id)}
+      placeholder={placeholder}
+    />
+  );
 }

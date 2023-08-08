@@ -45,7 +45,7 @@ export default function WriteClient() {
       console.error("Error creating post:", error);
     }
   }
-  
+  console.log('WRITE CLIENT RENDERED')
   return (
     <Form onSubmit={handleSubmit(createPostHandleSubmit)}>
       <Input id="title" register={register} placeholder="제목을 입력해주세요."/>

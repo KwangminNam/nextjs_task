@@ -5,19 +5,14 @@ import { DetailParamsI } from "./page";
 import Link from "next/link";
 import { apiModules } from "@/app/utils/api";
 import { styled } from "styled-components";
-import Input from "@/app/components/Input";
-import Form from "@/app/components/Form";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Button from "@/app/components/Button";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import EditComment from "@/app/components/EditComment";
 import { BsFillTrashFill } from "react-icons/bs";
-import { BiSolidEditAlt } from 'react-icons/bi'
+import { BiSolidEditAlt } from "react-icons/bi";
 import PostComment from "@/app/components/PostComment";
-
-
 
 const DetailContainter = styled.div`
   display: flex;
@@ -29,9 +24,9 @@ const DetailContainter = styled.div`
 const EditLink = styled(Link)`
   color: #333;
   font-size: 15px;
-  position: absolute;;
+  position: absolute;
   right: 0;
-  background-color:#4d8eff;
+  background-color: #4d8eff;
   color: #fff;
   border-radius: 12px;
   padding: 7px;
@@ -61,11 +56,11 @@ const CommentWrapper = styled.div`
   align-items: center;
 `;
 
-const CommentBtnWrapper = styled.div<{width:string}>`
+const CommentBtnWrapper = styled.div<{ width: string }>`
   display: flex;
   padding-right: 15px;
-  gap: 13px ;
-  width: ${props => props.width};
+  gap: 13px;
+  width: ${(props) => props.width};
 `;
 
 const CommentButton = styled.button<{ backgroundColor: string }>`
@@ -73,31 +68,26 @@ const CommentButton = styled.button<{ backgroundColor: string }>`
   height: 30px;
   cursor: pointer;
   border-radius: 100%;
-  background-color:${props => props.backgroundColor};
+  background-color: ${(props) => props.backgroundColor};
   display: flex;
   justify-content: center;
   border: none;
   align-items: center;
 `;
 
-
 export default function PostDetail({ params }: { params: DetailParamsI }) {
-  const {
-    getData,
-    getComment,
-    postCommentData,
-    deleteCommentData
-  } = apiModules();
+  const { getData, getComment, postCommentData, deleteCommentData } =
+    apiModules();
 
   const router = useRouter();
   const [commentIndex, setCommentIndex] = useState<number | null>(null);
-  const { handleSubmit, register ,watch , setValue} = useForm<FieldValues>({
+  const { handleSubmit, register, watch, setValue } = useForm<FieldValues>({
     defaultValues: {
       postId: +params.id
     }
   });
 
-  const commentContent = watch('content');
+  const commentContent = watch("content");
   const { data, isLoading, isError } = useQuery({
     queryKey: ["posts"],
     queryFn: getData
@@ -111,7 +101,6 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
     queryFn: getComment
   });
 
-
   const detailPost = data?.find((item) => item.id === +params.id);
   const commentPost = commentsData?.filter(
     (item) => item.postId === +params.id
@@ -123,7 +112,7 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
     mutationFn: postCommentData,
     onSuccess: () => {
       toast.success("댓글등록완료 등록 완료!");
-      setValue('content',"")
+      setValue("content", "");
       router.refresh();
     },
     onError: () => {
@@ -131,18 +120,21 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
     }
   });
 
-  const createCommentHandleSubmit = async (formData: FieldValues) => {
-    try {
-      if(!commentContent){
-        alert('댓글을 입력해주세요!')
-        return;
+  const createCommentHandleSubmit = useCallback(
+    async (formData: FieldValues) => {
+      try {
+        if (!commentContent) {
+          alert("댓글을 입력해주세요!");
+          return;
+        }
+        // 여기서 formData를 사용하여 적절한 형태로 변환한 후 mutate 함수에 전달합니다.
+        await createComment.mutateAsync(formData);
+      } catch (error) {
+        console.error("Error creating post:", error);
       }
-      // 여기서 formData를 사용하여 적절한 형태로 변환한 후 mutate 함수에 전달합니다.
-      await createComment.mutateAsync(formData);
-    } catch (error) {
-      console.error("Error creating post:", error);
-    }
-  };
+    },
+    [commentContent, createComment]
+  );
 
   const removeQuery = useMutation({
     mutationFn: deleteCommentData,
@@ -156,9 +148,9 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
   });
 
   const removeHandler = (id: number) => {
-    const confirmRemove = confirm('삭제 하시겠습니까?');
+    const confirmRemove = confirm("삭제 하시겠습니까?");
     try {
-      if(confirmRemove){
+      if (confirmRemove) {
         removeQuery.mutateAsync(id);
       }
     } catch (error) {
@@ -186,29 +178,35 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
           <span>댓글</span>
         </DetailTitle>
         {commentPost?.map((item) => (
-          <CommentWrapper
-            key={item.id}
-          >
+          <CommentWrapper key={item.id}>
             {commentIndex !== item.id ? (
               <>
                 {item.content}
                 <CommentBtnWrapper width="unset">
-                  <CommentButton backgroundColor="#99df99" onClick={() => setCommentIndex(item.id)}>
+                  <CommentButton
+                    backgroundColor="#99df99"
+                    onClick={() => setCommentIndex(item.id)}
+                  >
                     <BiSolidEditAlt size={20} color="#fff" />
                   </CommentButton>
-                  <CommentButton backgroundColor="red" onClick={() => removeHandler(item.id)}>
+                  <CommentButton
+                    backgroundColor="red"
+                    onClick={() => removeHandler(item.id)}
+                  >
                     <BsFillTrashFill size={20} color="#fff" />
                   </CommentButton>
                 </CommentBtnWrapper>
               </>
-            ) : <CommentBtnWrapper width="100%">
-              <EditComment
-                contentValue={item.content}
-                postIdValue={item.postId}
-                postId={item.id}
-                setEditComment={setCommentIndex}
-              />
-            </CommentBtnWrapper>}
+            ) : (
+              <CommentBtnWrapper width="100%">
+                <EditComment
+                  contentValue={item.content}
+                  postIdValue={item.postId}
+                  postId={item.id}
+                  setEditComment={setCommentIndex}
+                />
+              </CommentBtnWrapper>
+            )}
           </CommentWrapper>
         ))}
       </div>

@@ -38,11 +38,18 @@ json-server --watch ./app/db/data.json --port 3001
 * react-hook-form을 사용하여 input focus를 주려고 했지만 , useRef 사용시 "'ref' is specified more than once, so this usage will be overwritten." 에러
  생각해보니.. 당연하게도 react-hook-form에서 register로 이미 input의 ref에 접근 하고있어서 중복 에러. react-hook-form 에서 제공하는 setFocus 이용해서 focus event 해결완료!
 
+ *app-index.js:31 Warning: Prop `className` did not match
+ 해결방법 2~3가지를 찾아서 시도해봤지만 콘솔에 여전히 에러출력..
+ 그러나 스타일 컴포넌트가 늦게적용되거나 하는경우는 없고 스타일 적용도 잘됨
+
 * jest로 fetching 해오는 데이터를 MSW mock데이터로 이용하려했으나 Next.js13에서 지원이 안되는거같다.. 
 https://mswjs.io/
 https://github.com/mswjs/msw/discussions/1498
 -- youtuber 발견:https://www.youtube.com/watch?v=Q-Sg4p_iQvw&t=469s
 
+
+## useMemo , useCallback
+https://www.rinae.dev/posts/review-when-to-usememo-and-usecallback
 
 ## Todo
 
