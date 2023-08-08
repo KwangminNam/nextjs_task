@@ -25,13 +25,13 @@ const LinkList = styled.ul`
 const MainTitle = styled.h1`
   font-size: 24px;
   color: #fff;
-  padding-left: 70px;
+  padding-left: 20px;
 `;
 
 export default function NavBar() {
   return (
     <NavBarComponent>
-      <MainTitle>Culture hero</MainTitle>
+      <MainTitle>Culture hero task</MainTitle>
       <LinkList>
         <li>
           <Link href="/">

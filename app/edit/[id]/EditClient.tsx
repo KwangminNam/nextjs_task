@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { apiModules } from "@/app/utils/getData";
+import { useEffect, useRef } from "react";
 
 export default function EditClient({ params }: any) {
   const { getData, editData: editFn } = apiModules();
@@ -18,17 +19,19 @@ export default function EditClient({ params }: any) {
   });
 
   const editData = data?.find((item) => item.id === +params.id);
-  const { register, handleSubmit } = useForm<FieldValues>({
+  const { register, handleSubmit , setFocus} = useForm<FieldValues>({
     defaultValues: {
       title: editData?.title,
       content: editData?.content
     }
   });
-  console.log(editData);
+
+  useEffect(()=>{
+    setFocus('title')
+  },[])
 
   const editPost = useMutation(
     async (formData: FieldValues) => {
-      // 실제로는 여기서 formData를 사용하여 API 호출을 하도록 수정해야 합니다.
       const response = await editFn(formData, editData?.id);
       return response.data;
     },

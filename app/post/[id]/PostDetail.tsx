@@ -14,16 +14,27 @@ import Button from "@/app/components/Button";
 import { useState } from "react";
 import EditComment from "@/app/components/EditComment";
 import { BsFillTrashFill } from "react-icons/bs";
+import { BiSolidEditAlt } from 'react-icons/bi'
+import PostComment from "@/app/components/PostComment";
 
-const EditLink = styled(Link)`
-  color: #f04d4e;
-  font-size: 15px;
-`;
+
 
 const DetailContainter = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+`;
+
+const EditLink = styled(Link)`
+  color: #333;
+  font-size: 15px;
+  position: absolute;;
+  right: 0;
+  background-color:#4d8eff;
+  color: #fff;
+  border-radius: 12px;
+  padding: 7px;
 `;
 
 const DetailTitle = styled.h2`
@@ -38,7 +49,7 @@ const DetailContent = styled.div`
   border-bottom: 1px solid #ccc;
   padding-top: 30px;
   width: 100%;
-  min-height: 500px;
+  min-height: 350px;
 `;
 
 const CommentWrapper = styled.div`
@@ -50,35 +61,43 @@ const CommentWrapper = styled.div`
   align-items: center;
 `;
 
-const CommentBtnWrapper = styled.div`
+const CommentBtnWrapper = styled.div<{width:string}>`
   display: flex;
   padding-right: 15px;
   gap: 13px ;
+  width: ${props => props.width};
 `;
 
-const RemoveCommentButton = styled.button`
+const CommentButton = styled.button<{ backgroundColor: string }>`
   width: 30px;
   height: 30px;
   cursor: pointer;
   border-radius: 100%;
-  background-color: red;
+  background-color:${props => props.backgroundColor};
   display: flex;
   justify-content: center;
   border: none;
   align-items: center;
 `;
 
-const EditCommentButton = styled.button`
-  background-color: green;
-`;
 
 export default function PostDetail({ params }: { params: DetailParamsI }) {
-  const { getData, getComment, postCommentData, deleteCommentData } =
-    apiModules();
-  const router = useRouter();
-  const [editComment, setEditComment] = useState(false);
-  const [index, setIndex] = useState<number | null>(null);
+  const {
+    getData,
+    getComment,
+    postCommentData,
+    deleteCommentData
+  } = apiModules();
 
+  const router = useRouter();
+  const [commentIndex, setCommentIndex] = useState<number | null>(null);
+  const { handleSubmit, register ,watch , setValue} = useForm<FieldValues>({
+    defaultValues: {
+      postId: +params.id
+    }
+  });
+
+  const commentContent = watch('content');
   const { data, isLoading, isError } = useQuery({
     queryKey: ["posts"],
     queryFn: getData
@@ -92,11 +111,7 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
     queryFn: getComment
   });
 
-  const { handleSubmit, register } = useForm<FieldValues>({
-    defaultValues: {
-      postId: +params.id
-    }
-  });
+
   const detailPost = data?.find((item) => item.id === +params.id);
   const commentPost = commentsData?.filter(
     (item) => item.postId === +params.id
@@ -108,6 +123,7 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
     mutationFn: postCommentData,
     onSuccess: () => {
       toast.success("댓글등록완료 등록 완료!");
+      setValue('content',"")
       router.refresh();
     },
     onError: () => {
@@ -117,6 +133,10 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
 
   const createCommentHandleSubmit = async (formData: FieldValues) => {
     try {
+      if(!commentContent){
+        alert('댓글을 입력해주세요!')
+        return;
+      }
       // 여기서 formData를 사용하여 적절한 형태로 변환한 후 mutate 함수에 전달합니다.
       await createComment.mutateAsync(formData);
     } catch (error) {
@@ -136,8 +156,11 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
   });
 
   const removeHandler = (id: number) => {
+    const confirmRemove = confirm('삭제 하시겠습니까?');
     try {
-      removeQuery.mutateAsync(id);
+      if(confirmRemove){
+        removeQuery.mutateAsync(id);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -165,39 +188,34 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
         {commentPost?.map((item) => (
           <CommentWrapper
             key={item.id}
-            onClick={() => {
-              setEditComment(true);
-            }}
           >
-            {index !== item.id && (
+            {commentIndex !== item.id ? (
               <>
                 {item.content}
-                <CommentBtnWrapper>
-                  <button onClick={() => setIndex(item.id)}>수정</button>
-                  <RemoveCommentButton onClick={() => removeHandler(item.id)}>
+                <CommentBtnWrapper width="unset">
+                  <CommentButton backgroundColor="#99df99" onClick={() => setCommentIndex(item.id)}>
+                    <BiSolidEditAlt size={20} color="#fff" />
+                  </CommentButton>
+                  <CommentButton backgroundColor="red" onClick={() => removeHandler(item.id)}>
                     <BsFillTrashFill size={20} color="#fff" />
-                  </RemoveCommentButton>
+                  </CommentButton>
                 </CommentBtnWrapper>
               </>
-            )}
-            {index === item.id && (
+            ) : <CommentBtnWrapper width="100%">
               <EditComment
                 contentValue={item.content}
                 postIdValue={item.postId}
                 postId={item.id}
-                setEditComment={setIndex}
+                setEditComment={setCommentIndex}
               />
-            )}
+            </CommentBtnWrapper>}
           </CommentWrapper>
         ))}
       </div>
-      <Form onSubmit={handleSubmit(createCommentHandleSubmit)}>
-        <div style={{ display: "flex" }}>
-          <Input id="content" register={register} />
-          <Input id="postId" register={register} type="hidden" />
-          <Button label="댓글 등록" />
-        </div>
-      </Form>
+      <PostComment
+        register={register}
+        handleSubmit={handleSubmit(createCommentHandleSubmit)}
+      />
     </DetailContainter>
   );
 }

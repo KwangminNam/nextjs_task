@@ -14,6 +14,7 @@ const FormContainer = styled.form`
   align-items: center;
   gap: 10px;
   padding: 10px;
+  width: 100%;
 `;
 
 export default function Form({onSubmit,children}:FormPropsI) {

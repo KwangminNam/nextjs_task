@@ -8,6 +8,7 @@ import { apiModules } from "../utils/getData";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { useEffect } from "react";
 
 interface EditComment {
   contentValue: string;
@@ -24,12 +25,16 @@ export default function EditComment({
 }: EditComment) {
   const router = useRouter();
   const { editCommentData } = apiModules();
-  const { handleSubmit, register } = useForm<FieldValues>({
+  const { handleSubmit, register , setFocus} = useForm<FieldValues>({
     defaultValues: {
       content: contentValue,
       postId: postIdValue
     }
   });
+
+  useEffect(()=>{
+    setFocus('content')
+  },[])
 
   const editCommentQuery = useMutation(
     async (formData: FieldValues) => {
@@ -59,7 +64,7 @@ export default function EditComment({
 
   return (
     <Form onSubmit={handleSubmit(editCommentHandler)}>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex",width:'100%' }}>
         <Input id="content" register={register} />
         <Input id="postId" register={register} type="hidden" />
         <Button label="댓글 수정" />

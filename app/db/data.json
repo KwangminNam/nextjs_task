@@ -1,21 +1,16 @@
 {
   "posts": [
     {
-      "title": "22",
-      "content": "22",
-      "id": 3
+      "title": "sadfhh111",
+      "content": "1111hhsadf",
+      "id": 1
     }
   ],
   "comments": [
     {
-      "postId": 3,
-      "content": "dd",
+      "content": "!!!hello111",
+      "postId": 1,
       "id": 1
-    },
-    {
-      "postId": 3,
-      "content": "dd",
-      "id": 2
     }
   ]
 }
