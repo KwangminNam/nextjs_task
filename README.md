@@ -35,6 +35,9 @@ json-server --watch ./app/db/data.json --port 3001
 
 * Next.js13 에서 Styled-components를 적용할때 생기는 이슈 해결 관련 블로그
 
+* react-hook-form을 사용하여 input focus를 주려고 했지만 , useRef 사용시 "'ref' is specified more than once, so this usage will be overwritten." 에러
+ 생각해보니.. 당연하게도 react-hook-form에서 register로 이미 input의 ref에 접근 하고있어서 중복 에러. react-hook-form 에서 제공하는 setFocus 이용해서 focus event 해결완료!
+
 
 ## Todo
 
