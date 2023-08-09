@@ -63,8 +63,7 @@ npm run test
  그러나 스타일 컴포넌트가 늦게적용되거나 하는경우는 없고 스타일 적용도 잘됨.
 
 * jest로 api call 비동기 테스트를 시도, 데이터를 MSW mock데이터로 이용하려했으나 Next.js13에서 지원이 안되는거같다.. 
-https://mswjs.io/
-https://github.com/mswjs/msw/discussions/1498
+관련 ref:https://github.com/mswjs/msw/discussions/1498
 
 
 ## useMemo , useCallback
