@@ -44,6 +44,7 @@ npm run test
 * app > edit/[id] > pages.tsx > EditClient.tsx // 게시글 수정 페이지
 
 * app > components // 공통 컴포넌트
+* app > utils > api.ts // 게시글 및 댓글 CRUD api 따로 관리
 
 * app > db > data.json // json-server data
 
