@@ -6,8 +6,8 @@
       "id": 1
     },
     {
-      "title": "11",
-      "content": "11",
+      "title": "22",
+      "content": "22",
       "id": 2
     }
   ],
@@ -16,6 +16,11 @@
       "postId": 1,
       "content": "댓글1",
       "id": 1
+    },
+    {
+      "postId": 2,
+      "content": "ㅇㅇㅇ",
+      "id": 2
     }
   ]
 }

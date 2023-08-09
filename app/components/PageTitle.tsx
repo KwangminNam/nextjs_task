@@ -9,6 +9,7 @@ interface PageTitleProps {
 const PageTitleComponent = styled.h2`
   font-size: 32px;
   margin-bottom: 14px;
+  text-align: center;
 `
 
 export default function PageTitle({title}:PageTitleProps) {

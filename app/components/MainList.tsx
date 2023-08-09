@@ -114,8 +114,8 @@ export default function MainList() {
 
   return (
     <main>
+      <PageTitle title="리스트"/>
       <PostList>
-        <PageTitle title="리스트"/>
         {data?.map((item) => (
           <PostListItem key={item.id}>
             <PostListItemLink
