@@ -109,7 +109,7 @@ export default function MainList() {
   };
 
   if (isError) {
-    return <Unexpected title="잠시 후 다시 시도해주세요/" />
+    return <Unexpected title="Json server가 켜져있는지 확인 해주세요." />
   };
 
   return (

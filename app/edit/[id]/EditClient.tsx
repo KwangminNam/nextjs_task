@@ -67,7 +67,7 @@ export default function EditClient({ params }: {params :DetailParamsProps}) {
   }
   
   if(isError){
-    return <Unexpected title="잠시 후 다시 시도해주세요/"/>
+    return <Unexpected title="잠시 후 다시 시도해주세요."/>
   }
 
   return (

@@ -108,8 +108,6 @@ export default function PostDetail({ params }: { params: DetailParamsProps }) {
     (item) => item.postId === +params.id
   );
 
-
-
   const createComment = useMutation({
     mutationFn: postCommentData,
     onSuccess: () => {
@@ -117,9 +115,9 @@ export default function PostDetail({ params }: { params: DetailParamsProps }) {
       setValue("content", "");
       router.refresh();
     },
-    onError: (error:{
-      message:string;
-    })=>{
+    onError: (error: {
+      message: string;
+    }) => {
       toast.error(`${error.message}
       Json Server가 정상적으로 켜져있는지 확인하세요.`);
     }
@@ -147,9 +145,9 @@ export default function PostDetail({ params }: { params: DetailParamsProps }) {
       toast.success("댓글 삭제 완료!");
       router.refresh();
     },
-    onError: (error:{
-      message:string;
-    })=>{
+    onError: (error: {
+      message: string;
+    }) => {
       toast.error(`${error.message}
       Json Server가 정상적으로 켜져있는지 확인하세요.`);
     }
@@ -167,11 +165,11 @@ export default function PostDetail({ params }: { params: DetailParamsProps }) {
   };
 
   if (!detailPost) {
-    return <Unexpected title={`${params.id}번호의 상세페이지는 없습니다.`}/>;
+    return <Unexpected title={`${params.id}번호의 상세페이지는 없습니다.`} />;
   };
 
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   };
 
   return (
