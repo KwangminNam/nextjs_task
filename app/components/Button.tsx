@@ -3,7 +3,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-interface ButtonPropsI {
+interface ButtonProps {
   label: string;
 }
 
@@ -19,7 +19,7 @@ const ButtonComponent = styled.button`
   cursor: pointer;
 `;
 
-export default function Button({ label }: ButtonPropsI) {
+export default function Button({ label }: ButtonProps) {
   return (
     <ButtonComponent>
       <span>{label}</span>

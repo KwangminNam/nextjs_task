@@ -4,11 +4,11 @@ import PostDetail from "./PostDetail";
 import { apiModules } from "@/app/utils/api";
 
 //TODO: 공통 타입으로 따로 관리하기.
-export interface DetailParamsI {
+export interface DetailParamsProps {
   id: string;
 }
 
-export default async function Home({ params }: { params: DetailParamsI }) {
+export default async function Home({ params }: { params: DetailParamsProps }) {
   const { getData , getComment } = apiModules();
 
   // 서버사이드 렌더링을위해 포스트글 , 댓글 총 두개 hydrate를 해서 SSR 구현.

@@ -3,7 +3,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-interface FormPropsI {
+interface FormProps {
   children: React.ReactNode;
   onSubmit: () => void;
 }
@@ -17,8 +17,7 @@ const FormContainer = styled.form`
   width: 100%;
 `;
 
-export default function Form({onSubmit,children}:FormPropsI) {
-  console.log('FORM COMPONENT RENDERING')
+export default function Form({onSubmit,children}:FormProps) {
   return (
     <FormContainer onSubmit={onSubmit}>
       {children}

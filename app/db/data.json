@@ -1,46 +1,21 @@
 {
   "posts": [
     {
-      "title": "sadfhh111",
-      "content": "1111hhsadf",
+      "title": "11",
+      "content": "11",
       "id": 1
     },
     {
-      "title": "ㅇㅇㅇ",
-      "content": "ㅇㅇ",
+      "title": "11",
+      "content": "11",
       "id": 2
     }
   ],
   "comments": [
     {
-      "content": "!!!hello111",
       "postId": 1,
+      "content": "댓글1",
       "id": 1
-    },
-    {
-      "postId": 1,
-      "content": "1111",
-      "id": 2
-    },
-    {
-      "content": "dd1221123123123123123123123123111",
-      "postId": 2,
-      "id": 3
-    },
-    {
-      "postId": 2,
-      "content": "dddddd",
-      "id": 4
-    },
-    {
-      "postId": 2,
-      "content": "asdfasdfdddddd",
-      "id": 5
-    },
-    {
-      "postId": 2,
-      "content": "ddd",
-      "id": 6
     }
   ]
 }

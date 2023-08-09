@@ -3,6 +3,10 @@
 import { ReactElement } from "react";
 import { styled } from "styled-components";
 
+interface WrapperProps {
+  children: React.ReactNode;
+}
+
 const WrapperContainter = styled.div`
   width: 900px;
   margin: 30px auto 0;
@@ -12,11 +16,8 @@ const WrapperContainter = styled.div`
   border: 1px solid #ccc;
   border-radius: 30px;
 `;
-interface WrapperPropsI {
-  children: React.ReactNode;
-}
 
-export default function Wrapper({ children }: WrapperPropsI) {
+export default function Wrapper({ children }: WrapperProps) {
   return (
     <>
       <WrapperContainter>{children}</WrapperContainter>

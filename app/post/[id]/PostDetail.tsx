@@ -1,7 +1,7 @@
 "use client";
 
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { DetailParamsI } from "./page";
+import { DetailParamsProps } from "./page";
 import Link from "next/link";
 import { apiModules } from "@/app/utils/api";
 import { styled } from "styled-components";
@@ -13,6 +13,8 @@ import EditComment from "@/app/components/EditComment";
 import { BsFillTrashFill } from "react-icons/bs";
 import { BiSolidEditAlt } from "react-icons/bi";
 import PostComment from "@/app/components/PostComment";
+import Unexpected from "@/app/components/Unexpected";
+import Loading from "@/app/components/Loading";
 
 const DetailContainter = styled.div`
   display: flex;
@@ -75,7 +77,7 @@ const CommentButton = styled.button<{ backgroundColor: string }>`
   align-items: center;
 `;
 
-export default function PostDetail({ params }: { params: DetailParamsI }) {
+export default function PostDetail({ params }: { params: DetailParamsProps }) {
   const { getData, getComment, postCommentData, deleteCommentData } =
     apiModules();
 
@@ -88,15 +90,15 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
   });
 
   const commentContent = watch("content");
-  const { data, isLoading, isError } = useQuery({
+
+  // Get Post query
+  const { data, isLoading } = useQuery({
     queryKey: ["posts"],
     queryFn: getData
   });
-  const {
-    data: commentsData,
-    isLoading: commentsLoading,
-    isError: commentsError
-  } = useQuery({
+
+  // Get Comments query
+  const { data: commentsData, } = useQuery({
     queryKey: ["comments"],
     queryFn: getComment
   });
@@ -106,7 +108,7 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
     (item) => item.postId === +params.id
   );
 
-  console.log(commentPost);
+
 
   const createComment = useMutation({
     mutationFn: postCommentData,
@@ -115,8 +117,11 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
       setValue("content", "");
       router.refresh();
     },
-    onError: () => {
-      toast.error("잠시후 다시 시도해주세요.");
+    onError: (error:{
+      message:string;
+    })=>{
+      toast.error(`${error.message}
+      Json Server가 정상적으로 켜져있는지 확인하세요.`);
     }
   });
 
@@ -142,8 +147,11 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
       toast.success("댓글 삭제 완료!");
       router.refresh();
     },
-    onError: () => {
-      toast.error("잠시후 다시 시도해주세요.");
+    onError: (error:{
+      message:string;
+    })=>{
+      toast.error(`${error.message}
+      Json Server가 정상적으로 켜져있는지 확인하세요.`);
     }
   });
 
@@ -159,12 +167,12 @@ export default function PostDetail({ params }: { params: DetailParamsI }) {
   };
 
   if (!detailPost) {
-    return <div>NO DETAIL PAGE</div>;
-  }
+    return <Unexpected title={`${params.id}번호의 상세페이지는 없습니다.`}/>;
+  };
 
   if (isLoading) {
-    return <div>LOADING</div>;
-  }
+    return <Loading/>;
+  };
 
   return (
     <DetailContainter>

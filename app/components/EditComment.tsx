@@ -14,7 +14,7 @@ interface EditCommentProps {
   contentValue: string;
   postIdValue: number;
   postId: number;
-  setEditComment:React.Dispatch<React.SetStateAction<number | null>>
+  setEditComment: React.Dispatch<React.SetStateAction<number | null>>
 }
 
 function EditComment({
@@ -25,7 +25,7 @@ function EditComment({
 }: EditCommentProps) {
   const router = useRouter();
   const { editCommentData } = apiModules();
-  const { handleSubmit, register , setFocus} = useForm<FieldValues>({
+  const { handleSubmit, register, setFocus } = useForm<FieldValues>({
     defaultValues: {
       content: contentValue,
       postId: postIdValue
@@ -34,9 +34,9 @@ function EditComment({
 
   console.log('EDITCOMMENT RENDERED')
 
-  useEffect(()=>{
+  useEffect(() => {
     setFocus('content');
-  },[])
+  }, [])
 
   const editCommentQuery = useMutation(
     async (formData: FieldValues) => {
@@ -50,8 +50,11 @@ function EditComment({
         router.refresh();
         setEditComment(null);
       },
-      onError: () => {
-        toast.error("잠시 후 다시 시도해주세요.");
+      onError: (error: {
+        message: string;
+      }) => {
+        toast.error(`${error.message}
+      Json Server가 정상적으로 켜져있는지 확인하세요.`);
       }
     }
   );
@@ -66,7 +69,7 @@ function EditComment({
 
   return (
     <Form onSubmit={handleSubmit(editCommentHandler)}>
-      <div style={{ display: "flex",width:'100%' }}>
+      <div style={{ display: "flex", width: '100%' }}>
         <Input id="content" register={register} />
         <Input id="postId" register={register} type="hidden" />
         <Button label="댓글 수정" />

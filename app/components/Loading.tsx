@@ -1,9 +1,7 @@
 'use client';
 
+import { PulseLoader } from 'react-spinners';
+
 export default function Loading() {
-  return (
-    <div>
-      
-    </div>
-  )
+  return <PulseLoader />
 }

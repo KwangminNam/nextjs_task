@@ -9,9 +9,12 @@ import { FieldValues, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { apiModules } from "@/app/utils/api";
 import { useEffect, useRef } from "react";
-import { DetailParamsI } from "@/app/post/[id]/page";
+import { DetailParamsProps } from "@/app/post/[id]/page";
+import Loading from "@/app/components/Loading";
+import Unexpected from "@/app/components/Unexpected";
+import PageTitle from "@/app/components/PageTitle";
 
-export default function EditClient({ params }: {params :DetailParamsI}) {
+export default function EditClient({ params }: {params :DetailParamsProps}) {
   const { getData, editData: editFn } = apiModules();
   const router = useRouter();
   const { data, isLoading, isError } = useQuery({
@@ -42,8 +45,11 @@ export default function EditClient({ params }: {params :DetailParamsI}) {
         router.push("/");
         toast.success("수정 완료!");
       },
-      onError: () => {
-        toast.error("잠시 후 다시 시도해주세요.");
+      onError: (error:{
+        message:string;
+      })=>{
+        toast.error(`${error.message}
+        Json Server가 정상적으로 켜져있는지 확인하세요.`);
       }
     }
   );
@@ -56,8 +62,17 @@ export default function EditClient({ params }: {params :DetailParamsI}) {
     }
   };
 
+  if(isLoading){
+    return <Loading/>;
+  }
+  
+  if(isError){
+    return <Unexpected title="잠시 후 다시 시도해주세요/"/>
+  }
+
   return (
     <Form onSubmit={handleSubmit(createPostHandleSubmit)}>
+      <PageTitle title="수정"/>
       <Input id="title" register={register} />
       <Input id="content" register={register} type="textarea" />
       <Button label="수정하기" />

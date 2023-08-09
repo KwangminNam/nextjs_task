@@ -2,7 +2,7 @@
 import { FieldValues, UseFormRegister } from "react-hook-form";
 import { styled } from "styled-components";
 
-interface InputPropsI {
+interface InputProps {
   id: string;
   type?: "text" | "textarea" | "password" | "number" | "hidden";
   placeholder?: string;
@@ -21,7 +21,7 @@ export default function Input({
   type = "text",
   placeholder,
   register
-}: InputPropsI) {
+}: InputProps) {
   return (
     <InputComponent
       id={id}

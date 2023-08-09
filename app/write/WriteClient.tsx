@@ -9,6 +9,7 @@ import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Form from "../components/Form";
 import { apiModules } from "../utils/api";
+import PageTitle from "../components/PageTitle";
 
 export default function WriteClient() {
   const { handleSubmit, register , watch , setFocus} = useForm();
@@ -28,8 +29,11 @@ export default function WriteClient() {
       toast.success('등록 완료')
       router.push('/')
     },
-    onError: ()=>{
-      toast.error('잠시후 다시 시도해주세요.')
+    onError: (error:{
+      message:string;
+    })=>{
+      toast.error(`${error.message}
+      Json Server가 정상적으로 켜져있는지 확인하세요.`);
     }
   })
 
@@ -48,6 +52,7 @@ export default function WriteClient() {
   console.log('WRITE CLIENT RENDERED')
   return (
     <Form onSubmit={handleSubmit(createPostHandleSubmit)}>
+      <PageTitle title="글쓰기"/>
       <Input id="title" register={register} placeholder="제목을 입력해주세요."/>
       <Input id="content" register={register}  type="textarea" placeholder="내용을 입력해주세요."/>
       <Button label="등록하기" />
