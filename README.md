@@ -37,6 +37,19 @@ npm run test
 ```
 
 
+## File structure
+* app > page.tsx > MainList.tsx // 메인페이지
+* app > wrtie > page.tsx > WriteClient.tsx // 게시글 작성 페이지
+* app > post/[id] > page.tsx > PostDetail.tsx // 게시글 상세 페이지 (댓글 feature 및 컴포넌트 포함)
+* app > edit/[id] > pages.tsx > EditClient.tsx // 게시글 수정 페이지
+
+* app > components // 공통 컴포넌트
+
+* app > db > data.json // json-server data
+
+
+
+
 ## Issue
 * [Next.js13 에서 React-query 로 SSR 및 hydrate 구현 관련 블로그 포스트 보러가기](https://fe-kwangmin.tistory.com/46)
 * [Next.js13 에서 Styled-components를 적용할때 생기는 이슈 해결 관련 블로그 포스트 보러가기](https://fe-kwangmin.tistory.com/47) 
@@ -54,8 +67,9 @@ https://github.com/mswjs/msw/discussions/1498
 
 
 ## useMemo , useCallback
-https://www.rinae.dev/posts/review-when-to-usememo-and-usecallback
-useMemo , useCallback 을 사용할때 항상 정말 메모이제이션이 필요한만큼 expensive 한 값 또는 함수인지 고려해야 해서 검색해보면서 적용 해봤습니다.
+* [useCallback, useMemo reference](https://www.rinae.dev/posts/review-when-to-usememo-and-usecallback)
+
+useMemo , useCallback 을 사용할때 항상 메모이제이션이 얼만큼 expensive 한 값 또는 함수인지 고려해야 해서 검색해보면서 React.memo 와 함께 적용 해봤습니다.
 
 ## Todo
 * 게시글 CRUD 구현 : Done
