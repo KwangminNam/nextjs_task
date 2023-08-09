@@ -18,9 +18,5 @@ const WrapperContainter = styled.div`
 `;
 
 export default function Wrapper({ children }: WrapperProps) {
-  return (
-    <>
-      <WrapperContainter>{children}</WrapperContainter>
-    </>
-  );
+  return <WrapperContainter>{children}</WrapperContainter>;
 }

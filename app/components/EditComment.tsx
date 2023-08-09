@@ -32,8 +32,6 @@ function EditComment({
     }
   });
 
-  console.log('EDITCOMMENT RENDERED')
-
   useEffect(() => {
     setFocus('content');
   }, [])

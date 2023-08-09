@@ -19,7 +19,7 @@ function PostComment({
   register,
   handleSubmit
 }: PostCommentProps) {
-  console.log("POST COMMENT RENDERED");
+  
   return (
     <Form onSubmit={handleSubmit}>
       <CommentWrap>

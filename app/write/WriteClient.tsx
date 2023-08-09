@@ -39,7 +39,6 @@ export default function WriteClient() {
 
   const createPostHandleSubmit = async (formData: FieldValues) => {
     try {
-      // 여기서 formData를 사용하여 적절한 형태로 변환한 후 mutate 함수에 전달합니다.
       if(!postTitle || !postContent) {
         alert(`${!postTitle ? '제목을 입력해주세요!' : '내용을 입력해주세요!'}`)
         return;
