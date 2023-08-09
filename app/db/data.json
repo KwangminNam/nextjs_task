@@ -1,26 +1,61 @@
 {
   "posts": [
     {
-      "title": "11",
-      "content": "11",
+      "title": "1번 게시글 입니다.",
+      "content": "1번 게시글의 내용 입니다.",
       "id": 1
     },
     {
-      "title": "22",
-      "content": "22",
+      "title": "2번 게시글 입니다.",
+      "content": "2번 게시글의 내용입니다.",
       "id": 2
+    },
+    {
+      "title": "3번 게시글 입니다.",
+      "content": "3번 게시글의 내용 입니다.",
+      "id": 3
+    },
+    {
+      "title": "4번 게시글 입니다.",
+      "content": "4번 게시글의 내용 입니다.",
+      "id": 4
+    },
+    {
+      "title": "5번 게시글 입니다.",
+      "content": "5번 게시글의 내용 입니다.",
+      "id": 5
     }
   ],
   "comments": [
     {
-      "postId": 1,
-      "content": "댓글1",
+      "postId": 5,
+      "content": "5번 게시글의 댓글 입니다",
       "id": 1
     },
     {
-      "postId": 2,
-      "content": "ㅇㅇㅇ",
+      "postId": 5,
+      "content": "컬쳐히어로~!",
       "id": 2
+    },
+    {
+      "postId": 1,
+      "content": "1번 게시글 댓글입니다.",
+      "id": 3
+    },
+    {
+      "postId": 1,
+      "content": "두번째 1번 게시글 댓글입니다 : )",
+      "id": 4
+    },
+    {
+      "postId": 2,
+      "content": "2번 게시글 댓글입니다~!",
+      "id": 5
+    },
+    {
+      "postId": 3,
+      "content": "3번 댓글입니다~!",
+      "id": 6
     }
   ]
 }
