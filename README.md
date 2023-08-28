@@ -1,3 +1,5 @@
+# 사전과제 7days
+
 ## Project
 * Next.js 13 (Latest version)
 * Typescript
@@ -49,8 +51,6 @@ npm run test
 * app > db > data.json // json-server data
 
 
-
-
 ## Issue
 * [Next.js13 에서 React-query 로 SSR 및 hydrate 구현 관련 블로그 포스트 보러가기](https://fe-kwangmin.tistory.com/46)
 * [Next.js13 에서 Styled-components를 적용할때 생기는 이슈 해결 관련 블로그 포스트 보러가기](https://fe-kwangmin.tistory.com/47) 
@@ -65,11 +65,9 @@ npm run test
 * jest로 api call 비동기 테스트를 시도, 데이터를 MSW mock데이터로 이용하려했으나 Next.js13에서 지원이 안되는거같다.. 
 관련 ref:https://github.com/mswjs/msw/discussions/1498
 
-
 ## useMemo , useCallback
 * [useCallback, useMemo reference](https://www.rinae.dev/posts/review-when-to-usememo-and-usecallback)
 
-useMemo , useCallback 을 사용할때 항상 메모이제이션이 얼만큼 expensive 한 값 또는 함수인지 고려해야 해서 검색해보면서 React.memo 와 함께 적용 해봤습니다.
 
 ## Todo
 * 게시글 CRUD 구현 : Done
@@ -81,13 +79,4 @@ useMemo , useCallback 을 사용할때 항상 메모이제이션이 얼만큼 ex
 * Error 핸들링 = Done
 * Jest testing 비동기 코드 위주의 테스트코드 예정 = Attempted failed
 
- ## 마치면서
- 우선 다행히 next.js 13로 사이드프로젝트를 진행했어서 구현하는데 큰 어려움은 없었지만, 평소에 자주 사용하지 않았던 기술로 next.js13 에서 CRUD 구현 하는것에 재미있었습니다.
- 
- 이번 과제를 통해 react-query로 next.js13에서 어떻게 ssr 및 hydrate를 구현하는지 배우고 덕분에 블로그 포스팅도 했습니다. 
- 
- jest를 써보면서, 아직 실제 프로젝트에서 어떤 코드를 테스트를 해야하는지 감이 잘 오진 않지만, jest도 평소에 관심이 있었던 라이브러리라서, 이번 기회에 공부하면서 쓸 수 있어서 좋았습니다.
- 
- api 호출 하는 test 코드를 msw mock api가 아직 next.js13에 지원하지않은거같아서 아쉬웠지만 이번 과제로 많이 배우기도하고 복습 또한 된것같습니다.
- 
- 이상 마치면서, 감사합니다.
+
